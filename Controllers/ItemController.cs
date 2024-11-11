@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization; 
 
 [ApiController]
 [Route("api/items")]
+[Authorize(Roles = "Administrador")] 
 
 public class ItemController : ControllerBase
 {

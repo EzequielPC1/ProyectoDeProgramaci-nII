@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization; 
 
 [ApiController]
 [Route("api/pedidos")]
+[Authorize(Roles = "Administrador")] 
 public class PedidoController : ControllerBase
 {
     private readonly IPedidoService _pedidoService;
@@ -54,21 +56,7 @@ public class PedidoController : ControllerBase
         }
         return Ok(pedidos);
     }
-//     [HttpGet("estado/{estado}")]
-// public ActionResult<List<Pedido>> GetPedidoByEstado(string estado)
-// {
-//     if (!Enum.TryParse<EstadoPedido>(estado, true, out var estadoPedido))
-//     {
-//         return BadRequest($"El estado '{estado}' no es válido.");
-//     }
 
-//     var pedidos = _pedidoService.GetByEstado(estadoPedido);
-//     if (pedidos == null || pedidos.Count == 0)
-//     {
-//         return NotFound($"No se encontraron pedidos con el estado '{estadoPedido}'");
-//     }
-//     return Ok(pedidos);
-// }
 
 
     [HttpGet("fecha/{fecha}")]
