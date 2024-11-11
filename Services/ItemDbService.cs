@@ -17,11 +17,18 @@ public class ItemDbService : IItemService
     {
         return _context.Items.Find(id);
     }
-    public Item Create(Item item)
+    public Item Create(ItemDTO item)
     {
-        _context.Items.Add(item);
+        Item i = new()
+        {
+            Nombre = item.Nombre,
+            Descripción = item.Descripción,
+            Precio = item.Precio
+        };
+        
+        _context.Items.Add(i);
         _context.SaveChanges();
-        return item;
+        return i;
     }
     public void Delete(int id)
     {

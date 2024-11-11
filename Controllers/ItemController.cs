@@ -33,12 +33,12 @@ public class ItemController : ControllerBase
 
     // Crear un nuevo item
     [HttpPost]
-    public ActionResult<Item> NuevoCliente(Item item)
+    public ActionResult<Item> NuevoCliente(ItemDTO item)
     {
         // Llamar al método Create del servicio de cliente para dar de alta el nuevo cliente
-        item = _itemService.Create(item);
+        Item _item = _itemService.Create(item);
         // Devolver el resultado de llamar al método GetById pasando como parámetro el ID del nuevo cliente
-        return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+        return CreatedAtAction(nameof(GetById), new { id = _item.Id }, _item);
     }
 
     // Eliminar un cliente por ID

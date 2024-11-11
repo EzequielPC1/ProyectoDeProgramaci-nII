@@ -17,11 +17,19 @@ public class ClienteDbService : IClienteService
     {
         return _context.Clientes.Find(id);
     }
-    public Cliente Create(Cliente cliente)
+    public Cliente Create(ClienteDTO cliente)
     {
-        _context.Clientes.Add(cliente);
+        Cliente c = new()
+        {
+            Nombre = cliente.Nombre,
+            Apellido = cliente.Apellido,
+            Direccion = cliente.Direccion,
+            Telefono = cliente.Telefono
+        };
+
+        _context.Clientes.Add(c);
         _context.SaveChanges();
-        return cliente;
+        return c;
     }
     public void Delete(int id)
     {

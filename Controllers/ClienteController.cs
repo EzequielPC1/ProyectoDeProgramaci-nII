@@ -32,12 +32,12 @@ public class ClienteController : ControllerBase
 
     // Crear un nuevo cliente
     [HttpPost]
-    public ActionResult<Cliente> NuevoCliente(Cliente cliente)
+    public ActionResult<Cliente> NuevoCliente(ClienteDTO cliente)
     {
         // Llamar al método Create del servicio de cliente para dar de alta el nuevo cliente
-        cliente = _clienteService.Create(cliente);
+        Cliente _cliente = _clienteService.Create(cliente);
         // Devolver el resultado de llamar al método GetById pasando como parámetro el ID del nuevo cliente
-        return CreatedAtAction(nameof(GetById), new { id = cliente.Id }, cliente);
+        return CreatedAtAction(nameof(GetById), new { id = _cliente.Id }, _cliente);
     }
 
     // Eliminar un cliente por ID

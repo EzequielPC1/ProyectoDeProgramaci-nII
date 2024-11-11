@@ -11,15 +11,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Registro de los servicios
-builder.Services.AddSqlServer<DeliveryContext>(builder.Configuration.GetConnectionString("cnDelivery")); // Especifica el nombre de la cadena de conexión
-builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+builder.Services.AddSqlServer<DeliveryContext>(builder.Configuration.GetConnectionString("cnDelivery")); // Especificación del nombre de la cadena de conexión
 builder.Services.AddScoped<IClienteService, ClienteDbService>(); // Registro del servicio de clientes
-builder.Services.AddScoped<IItemService, ItemDbService>(); // Registro del servicio de items
-builder.Services.AddScoped<IPedidoService, PedidoDbService>(); // Registro del servicio de pedidos
+builder.Services.AddScoped<IItemService, ItemDbService>(); // servicio de items
+builder.Services.AddScoped<IPedidoService, PedidoDbService>(); // y registro del servicio de pedidos
 
 var app = builder.Build();
 
-// Configuramos el pipeline de solicitudes HTTP
+// Configuración del pipeline de solicitudes HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -28,7 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Mapeamos los controladores
+// Mapeo de controladores
 app.MapControllers();
 
 app.Run();
